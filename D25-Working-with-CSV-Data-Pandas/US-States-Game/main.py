@@ -1,4 +1,5 @@
-import turtle, pandas
+import turtle
+import pandas
 from state_tracker import StateTracker
 
 
@@ -31,13 +32,7 @@ while total_correct < len(data.state):
         total_correct += 1
 
     if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in correct_guesses:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in correct_guesses]
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("./states_to_learn.csv")
         break
-
-
-
