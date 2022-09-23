@@ -3,6 +3,19 @@ from tkinter import *
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+# data.txt
+# webste | email | pw
+#delete function, insert method for tikinter
+
+def save_data():
+
+    with open("./data.text", 'a') as datafile:
+        datafile.write(f"{web_entry.get()} | {username_field.get()} | {password_field.get()}\n")
+
+    web_entry.delete(0, 'end')
+    username_field.delete(0, 'end')
+    username_field.insert(0, 'example@e-mail.com')
+    password_field.delete(0, 'end')
 
 # ---------------------------- UI SETUP ------------------------------- #
 # Create window for password manager
@@ -48,7 +61,7 @@ password_gen = Button(text="Generate Password", width=14, font=("Arial", 7) )
 password_gen.grid(column=2, row=3)
 
 # Add button
-add_button = Button(text="Add", padx=0, pady=0, width=35)
+add_button = Button(text="Add", padx=0, pady=0, width=35, command=save_data)
 add_button.grid(column=1, row=4, columnspan=2)
 
 window.mainloop()
