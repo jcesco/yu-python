@@ -1,21 +1,61 @@
 from tkinter import *
+from tkinter import messagebox
+import random
+import pyperclip
+
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+def generate_password():
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+    nr_letters = random.randint(8, 10)
+    nr_symbols = random.randint(2, 4)
+    nr_numbers = random.randint(2, 4)
+
+    letter_list = [random.choice(letters) for _ in range(nr_letters)]
+    symbol_list = [random.choice(symbols) for _ in range(nr_symbols)]
+    num_list = [random.choice(numbers) for _ in range(nr_numbers)]
+
+    password_list = letter_list + symbol_list + num_list
+    random.shuffle(password_list)
+
+    password_generated = "".join(password_list)
+
+    password_field.insert(0, password_generated)
+    pyperclip.copy(password_generated)
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
-# data.txt
-# webste | email | pw
-#delete function, insert method for tikinter
-
 def save_data():
+    """Saves website, e-mail/username and password fields to a text file"""
 
-    with open("./data.text", 'a') as datafile:
-        datafile.write(f"{web_entry.get()} | {username_field.get()} | {password_field.get()}\n")
+    # Extract text from fields
+    website = web_entry.get()
+    email_user = username_field.get()
+    pw = password_field.get()
 
-    web_entry.delete(0, 'end')
-    username_field.delete(0, 'end')
-    username_field.insert(0, 'example@e-mail.com')
-    password_field.delete(0, 'end')
+    # Validate website and password fields have text
+    if len(website) == 0 or len(pw) == 0:
+        messagebox.showinfo(title="Oops", message="Please don't leave any fields empty")
+    else:
+        # Verify information with user and save
+        is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email_user} "
+                                                              f"\nPassword: {pw} \nIs it ok to save?")
+
+        if is_ok:
+            with open("./data.text", 'a') as datafile:
+                datafile.write(f"{website} | {email_user} | {pw}\n")
+
+                # Reset fields
+                web_entry.delete(0, 'end')
+                username_field.delete(0, 'end')
+                username_field.insert(0, 'example@e-mail.com')
+                password_field.delete(0, 'end')
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 # Create window for password manager
@@ -57,7 +97,7 @@ password_field = Entry(width=23)
 password_field.grid(column=1, row=3)
 
 # Password generate button
-password_gen = Button(text="Generate Password", width=14, font=("Arial", 7) )
+password_gen = Button(text="Generate Password", width=14, font=("Arial", 7), command=generate_password)
 password_gen.grid(column=2, row=3)
 
 # Add button
