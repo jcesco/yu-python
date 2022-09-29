@@ -76,3 +76,18 @@ green_check.grid(row=1, column=1)
 generate_f_word()
 
 window.mainloop()
+
+
+########### REFERENCES ###########
+# 1. Pandas dataframe to dictionary:
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_dict.html
+#
+# 2. Tkinter after:
+# https://tcl.tk/man/tcl8.6/TclCmd/after.htm
+#
+# 3. List remove
+# https://www.w3schools.com/python/ref_list_remove.asp
+#
+# 4. Pandas dataframe to CSV
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html
+
