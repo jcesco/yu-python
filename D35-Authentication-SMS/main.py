@@ -18,7 +18,6 @@ MY_LON = -80.172798
 # OneCall2.5 has been replaced with OneCall3.0 which requires CC info, will suffice with Current Weather Data
 OWM_Endpoint = "https://api.openweathermap.org/data/2.5/forecast"
 MY_KEY = os.environ.get("OWM_API_KEY")
-# 1a65456994c29f1bf8e3d52af181ae71
 UNITS = "imperial"
 
 weather_params = {
