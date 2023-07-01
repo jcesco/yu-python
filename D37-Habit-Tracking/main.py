@@ -1,11 +1,14 @@
 import requests
+import os
 from datetime import datetime
 
-USERNAME = "jcpixela"
-TOKEN = "my_pixela_token_01"
-GRAPH_ID = "graph1"
+USERNAME = os.environ.get("USERNAME")
+TOKEN = os.environ.get("TOKEN")
+GRAPH_ID = os.environ.get("GRAPH_ID")
 
+##########################
 # Pixela new user endpoint
+##########################
 pixela_endpoint = "https://pixe.la/v1/users"
 
 pixela_user_params = {
@@ -18,7 +21,9 @@ pixela_user_params = {
 # pixela_response = requests.post(url=pixela_endpoint, json=pixela_user_params)
 # print(pixela_response.text)
 
+##########################
 # Pixela graph endpoint
+##########################
 graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 
 graph_params = {
@@ -37,7 +42,9 @@ headers = {
 # graph_response = requests.post(url=graph_endpoint, json=graph_params, headers=headers)
 # print(graph_response.text)
 
+##########################
 # Pixela Post Pixel Engpoint
+##########################
 pixel_post_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 
 today = datetime.now()
@@ -51,7 +58,9 @@ pixel_post_params = {
 pixel_post_response = requests.post(url=pixel_post_endpoint, json=pixel_post_params, headers=headers)
 print(pixel_post_response.text)
 
+##########################
 # Pixela update pixel
+##########################
 
 pixel_update_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{today.strftime('%Y%m%d')}"
 
@@ -62,6 +71,10 @@ pixel_update_params = {
 # Updates an existing pixel with quantities per above
 # pixel_update_response = requests.put(url=pixel_update_endpoint, json=pixel_update_params, headers=headers)
 # print(pixel_update_response.text)
+
+##########################
+# Delete a pixel endpoint
+##########################
 
 delete_date = datetime(year=2023, month=6, day=26)
 
