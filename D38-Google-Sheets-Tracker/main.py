@@ -3,15 +3,15 @@ import os
 from datetime import datetime
 
 # Nutritionix Constants
-APP_ID = os.environ.get("APP_ID") # "d44c3ebd"
-API_KEY = os.environ.get("API_KEY") # "f43f5dad03e66736c83628457ce2642c"
+APP_ID = os.environ.get("APP_ID") #
+API_KEY = os.environ.get("API_KEY") #
 
 # Sheety Constants
-USERNAME = os.environ.get("USERNAME") #"f4f24be2cdc2f5b9c827a12010051dea"
-PROJECT_NAME = os.environ.get("PROJECT_NAME") #"myWorkouts"
-SHEET_NAME = os.environ.get("SHEET_NAME") #"workouts"
+USERNAME = os.environ.get("USERNAME")
+PROJECT_NAME = os.environ.get("PROJECT_NAME")
+SHEET_NAME = os.environ.get("SHEET_NAME")
 HEADER_AUTH = {
-    "Authorization": f"Bearer {os.environ.get('HEADER_AUTH')}" #fw906!#N71n0"
+    "Authorization": f"Bearer {os.environ.get('HEADER_AUTH')}"
 }
 
 # Nutritionix User Info
