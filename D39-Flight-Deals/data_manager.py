@@ -10,6 +10,9 @@ import os
 USERNAME = os.environ.get("USERNAME")
 PROJECT_NAME = os.environ.get("PROJECT_NAME")
 SHEET_NAME = os.environ.get("SHEET_NAME")
+HEADER_AUTH = {
+    "Authorization": f"Bearer {os.environ.get('HEADER_AUTH')}"
+}
 sheety_endpoint = f"https://api.sheety.co/{USERNAME}/{PROJECT_NAME}/{SHEET_NAME}"
 ##########################################################
 
@@ -22,7 +25,7 @@ class DataManager:
     def get_destination_data(self):
         # This method pulls destination data from Google Sheet
 
-        sheet_info = requests.get(url=sheety_endpoint)
+        sheet_info = requests.get(url=sheety_endpoint, headers=HEADER_AUTH)
         self.destination_data = sheet_info.json()
         return self.destination_data
 
@@ -40,5 +43,5 @@ class DataManager:
                 }
 
                 row_endpoint = f"{sheety_endpoint}/{new_row_info['id']}"
-                response = requests.put(url=row_endpoint, json=new_iata_code)
+                response = requests.put(url=row_endpoint, json=new_iata_code, headers=HEADER_AUTH)
 
